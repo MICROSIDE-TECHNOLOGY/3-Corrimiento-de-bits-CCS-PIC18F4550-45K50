@@ -1,0 +1,5 @@
+Compiling C:\Users\Martin Hdez\Desktop\18F45K50\Práctica 3 – Corrimiento de bits\Corrimiento de bits on 01-dic.-20 at 09:52
+>>> Warning 202 "C:\Users\Martin Hdez\Desktop\18F45K50\Práctica 3 – Corrimiento de bits\Corrimiento de bits.c" Line 19(5,6): Variable never used:   i
+      Memory usage:   ROM=0%      RAM=0% - 0%
+      0 Errors,  1 Warnings.
+Build Successful.

@@ -1,0 +1,141 @@
+CCS PCH C Compiler, Version 5.090, 13314               01-dic.-20 09:52
+
+               Filename:   C:\Users\Martin Hdez\Desktop\18F45K50\Práctica 3 – Corrimiento de bits\Corrimiento de bits.lst
+
+               ROM used:   134 bytes (0%)
+                           Largest free fragment is 24438
+               RAM used:   7 (0%) at main() level
+                           8 (0%) worst case
+               Stack used: 0 locations
+               Stack size: 31
+
+*
+2000:  GOTO   203E
+.................... /*
+.................... AUTOR: MICROSIDE TECHNOLOGY S.A. DE C.V.
+.................... FECHA: JUNIO 2019
+.................... */
+.................... 
+.................... /*
+.................... ---------------------------------------------------------------------------
+.................... Implementar corrimiento de 8 bits y desplegar el resultado en 8 LEDs
+.................... ---------------------------------------------------------------------------
+.................... */
+.................... 
+.................... #include <18F45K50.h>                            //Incluye el microcontrolador con el que se va a trabajar 
+.................... //////////// Standard Header file for the PIC18F45K50 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC18F45K50
+.................... 
+.................... #list
+.................... 
+.................... #use delay(internal=48MHz)                       //Tipo de oscilador y frecuencia dependiendo del microcontrolador 
+*
+2014:  CLRF   FEA
+2016:  MOVLW  07
+2018:  MOVWF  FE9
+201A:  MOVF   FEF,W
+201C:  BZ    203A
+201E:  MOVLW  0F
+2020:  MOVWF  01
+2022:  CLRF   00
+2024:  DECFSZ 00,F
+2026:  BRA    2024
+2028:  DECFSZ 01,F
+202A:  BRA    2022
+202C:  MOVLW  8F
+202E:  MOVWF  00
+2030:  DECFSZ 00,F
+2032:  BRA    2030
+2034:  NOP   
+2036:  DECFSZ FEF,F
+2038:  BRA    201E
+203A:  GOTO   2082 (RETURN)
+.................... #build(reset=0x02000,interrupt=0x02008)          //Asigna los vectores de reset e interrupción para la versión con bootloader
+.................... #org 0x0000,0x1FFF {}                            //Reserva espacio en memoria para el bootloader
+.................... 
+.................... byte MI_REGISTRO;                                //Variable de 8 bits(1 byte)
+.................... 
+.................... int i;
+.................... 
+.................... void SisInit(void)
+.................... 
+.................... {
+....................      set_tris_b (0x00);                          //Configura puerto B como salidas
+*
+2008:  MOVLW  00
+200A:  MOVWF  F93
+....................      MI_REGISTRO = 0x0D;                         //Se inicia cargando los bits deseados
+200C:  MOVLW  0D
+200E:  MOVWF  04
+2010:  GOTO   2060 (RETURN)
+.................... }
+.................... 
+.................... void main (void)
+*
+203E:  CLRF   FF8
+2040:  BCF    FD0.7
+2042:  MOVLW  70
+2044:  MOVWF  FD3
+2046:  CLRF   FD2
+2048:  CLRF   F9B
+204A:  MOVLB  F
+204C:  CLRF   x5B
+204E:  CLRF   x5C
+2050:  CLRF   x5D
+2052:  CLRF   x5E
+2054:  CLRF   x5F
+2056:  CLRF   F9A
+2058:  CLRF   F99
+205A:  CLRF   F98
+.................... 
+.................... {
+....................    SisInit();
+205C:  MOVLB  0
+205E:  BRA    2008
+.................... 
+....................    while (true)
+.................... 
+....................        {
+....................             MI_REGISTRO = ((MI_REGISTRO <<1)|(MI_REGISTRO>>7));     //Inicia corrimiento
+2060:  BCF    FD8.0
+2062:  RLCF   04,W
+2064:  MOVWF  06
+2066:  CLRF   00
+2068:  BTFSC  04.7
+206A:  BSF    00.0
+206C:  MOVF   00,W
+206E:  IORWF  06,W
+2070:  MOVWF  04
+....................             output_b (MI_REGISTRO);                                 //Pasa el valor al puerto B
+2072:  CLRF   F93
+2074:  MOVFF  04,F8A
+....................             delay_ms (500);
+2078:  MOVLW  02
+207A:  MOVWF  06
+207C:  MOVLW  FA
+207E:  MOVWF  07
+2080:  BRA    2014
+2082:  DECFSZ 06,F
+2084:  BRA    207C
+2086:  BRA    2060
+....................         } 
+.................... }
+2088:  SLEEP 
+
+Configuration Fuses:
+   Word  1: C823   PLL3X PLLEN NOCPUDIV LS48MHZ INTRC_IO PRIMARY_SW FCMEN IESO
+   Word  2: 3C5E   PUT BROWNOUT BORV19 NOLPBOR NOWDT WDT32768
+   Word  3: D300   CCP2C1 PBADEN T3CKC0 SDOB3 MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
