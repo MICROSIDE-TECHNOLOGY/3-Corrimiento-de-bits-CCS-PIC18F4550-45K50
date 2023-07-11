@@ -11,8 +11,8 @@ Implementar corrimiento de 8 bits y desplegar el resultado en 8 LEDs
 
 #include <18F4550.h>                            //Incluye el microcontrolador con el que se va a trabajar 
 #use delay(clock=48Mhz, crystal)                //Tipo de oscilador y frecuencia dependiendo del microcontrolador 
-#build(reset=0x02000,interrupt=0x02008)         //Asignación de los vectores de reset e interrupción
-#org 0x0000,0x1FFF {}                           //Reserva espacio en la memoria para la versión con bootloader
+#build(reset=0x02000,interrupt=0x02008)         //AsignaciÃ³n de los vectores de reset e interrupciÃ³n
+#org 0x0000,0x1FFF {}                           //Reserva espacio en la memoria para la versiÃ³n con bootloader
 
 byte MI_REGISTRO;                               //Variable de 8 bits(1 byte)
 
