@@ -1,7 +1,12 @@
-/*
-AUTOR: MICROSIDE TECHNOLOGY S.A. DE C.V.
-FECHA: JUNIO 2019
-*/
+/************************************************************************************************
+Company:
+Microside Technology Inc.
+File Name:
+Corrimiento de bits.c
+Product Revision  :  1
+Device            :  X-TRAINER
+Driver Version    :  1.0
+************************************************************************************************/
 
 /*
 ---------------------------------------------------------------------------
@@ -16,19 +21,11 @@ Implementar corrimiento de 8 bits y desplegar el resultado en 8 LEDs
 
 byte MI_REGISTRO;                                //Variable de 8 bits(1 byte)
 
-int i;
-
-void SisInit(void)
-
-{
-     set_tris_b (0x00);                          //Configura puerto B como salidas
-     MI_REGISTRO = 0x0D;                         //Se inicia cargando los bits deseados
-}
-
 void main (void)
 
 {
-   SisInit();
+   set_tris_b (0x00);                          //Configura puerto B como salidas
+   MI_REGISTRO = 0x0D;                         //Se inicia cargando los bits deseados
 
    while (true)
 
