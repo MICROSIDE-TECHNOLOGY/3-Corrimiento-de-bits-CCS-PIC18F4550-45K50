@@ -3,48 +3,46 @@
 001     _RETURN_
 002     @SCRATCH
 003     @SCRATCH
-004     MI_REGISTRO
-005     i
-006     MAIN.@SCRATCH1
-007     @delay_ms1.P1
+004     LEDS
+005     main.@SCRATCH1
+006     @delay_ms1.P1
 F83     PSP_DATA
 FB4.6   C1OUT
 FB4.7   C2OUT
-FBB     CCP_2
 FBB     CCP_2_LOW
+FBB     CCP_2
 FBC     CCP_2_HIGH
 FBE     CCP_1_LOW
 FBE     CCP_1
 FBF     CCP_1_HIGH
-FE1-FE2 @WRITE_PACKED_MEMORY.P1
-FE1-FE2 @READ_PACKED_MEMORY.P2
-FE9-FEA @WRITE_PACKED_MEMORY.P1
-FE9-FEA @WRITE_PROGRAM_MEMORY.P2
-FE9-FEA @READ_PACKED_MEMORY.P3
-FE9-FEA @READ_PROGRAM_MEMORY.P4
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
 FF6-FF8 @READ_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-002008  SisInit
-002014  @delay_ms1
-00203E  MAIN
-00203E  @cinit1
-00204E  @cinit2
+002008  @delay_ms1
+002032  @cinit1
+002032  main
+002042  @cinit2
 
 Project Directory:
-    C:\Users\Martin Hdez\Desktop\18F4550\3 Corrimiento de bits\
+    C:\Users\victo\OneDrive\Documentos\X-TRAINER-hands-on\CCS\PIC18F\3-Corrimiento-de-bits-CCS-PIC18F4550-45K50\Proyecto\PIC18F4550\
 
 Project Files:
-    Corrimiento de bits.c                                   [30-nov.-20 13:36  CRC=D070DBE6]
-    D:\Programas\PICC\Devices\18F4550.h                     [02-oct.-19 09:47  CRC=AFEA7A8E]
+    Corrimiento de bits.c                                   [30-ago.-23 13:24  CRC=FC8422A8]
+    ..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICCDEMO\Devices\18F4550.h [02-may.-23 08:34  CRC=3BACED27]
 
-Source signature=3045D102
+Source signature=73DDFCF6
 Program memory checksum=0000
-Hex file CRC=11B7
+Hex file CRC=4207
 
 Units:
-    C:\Users\Martin Hdez\Desktop\18F4550\3 Corrimiento de bits\Corrimiento de bits (main)
+    C:\Users\victo\OneDrive\Documentos\X-TRAINER-hands-on\CCS\PIC18F\3-Corrimiento-de-bits-CCS-PIC18F4550-45K50\Proyecto\PIC18F4550\Corrimiento de bits (main)
 
 Compiler Settings:
     Processor:      PIC18F4550
@@ -53,7 +51,10 @@ Compiler Settings:
     Opt Level:      9
     Short,Int,Long: UNSIGNED: 1,8,16
     Float,Double:   32,32
-    Compile Mode:       CCS5
+    Compile Mode:   CCS5
+
+Compiler operating in Evaluation Mode
+To obtain a fully enabled compiler visit www.ccsinfo.com/products
 
 Output Files:
     XREF file:   Corrimiento de bits.xsym
